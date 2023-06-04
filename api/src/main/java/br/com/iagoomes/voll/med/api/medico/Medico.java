@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import java.util.Objects;
@@ -12,6 +13,7 @@ import java.util.Objects;
 @Entity(name = "Medico")
 @Table(name = "medicos")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Medico {
@@ -20,12 +22,15 @@ public class Medico {
     private Long id;
     private String nome;
     private String email;
+    private String telefone;
     private String crm;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
+
     @Embedded
     private Endereco endereco;
+
 
     @Override
     public boolean equals(Object o) {
