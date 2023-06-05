@@ -44,4 +44,16 @@ public class Medico {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+    public void atualizarInformacoes(MedicoRequestPut medicoRequestPut) {
+        if (medicoRequestPut.nome() != null && medicoRequestPut.nome().isBlank()) {
+            this.nome = medicoRequestPut.nome();
+        }
+        if (medicoRequestPut.telefone() != null) {
+            this.telefone = medicoRequestPut.telefone();
+        }
+        if (medicoRequestPut.endereco() != null) {
+            this.endereco.atualizarInformacoes(medicoRequestPut.endereco());
+        }
+    }
 }

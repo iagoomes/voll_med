@@ -2,10 +2,7 @@ package br.com.iagoomes.voll.med.api.controller;
 
 
 import br.com.iagoomes.voll.med.api.controller.mapper.MedicoMapper;
-import br.com.iagoomes.voll.med.api.medico.Medico;
-import br.com.iagoomes.voll.med.api.medico.MedicoRepository;
-import br.com.iagoomes.voll.med.api.medico.MedicoRequest;
-import br.com.iagoomes.voll.med.api.medico.MedicoResponse;
+import br.com.iagoomes.voll.med.api.medico.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,13 +20,21 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public Long cadastrar(@RequestBody @Valid MedicoRequest medicoRequest) {
-        Medico medico = mapper.MedicoRequestToMedico(medicoRequest);
+    public Long cadastrar(@RequestBody @Valid MedicoRequestPost medicoRequestPost) {
+        Medico medico = mapper.MedicoRequestToMedico(medicoRequestPost);
         repository.save(medico);
         return medico.getId();
     }
+
     @GetMapping
     public Page<MedicoResponse> listar(Pageable paginacao) {
         return repository.findAll(paginacao).map(mapper::medicoToMedicoResponse);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid MedicoRequestPut medicoRequestPut) {
+        Medico medico = repository.getReferenceById(medicoRequestPut.id());
+        medico.atualizarInformacoes(medicoRequestPut);
     }
 }
