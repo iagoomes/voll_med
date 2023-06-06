@@ -1,6 +1,7 @@
 package br.com.iagoomes.voll.med.api.controller.mapper;
 
 import br.com.iagoomes.voll.med.api.medico.Medico;
+import br.com.iagoomes.voll.med.api.medico.MedicoDetalhamentoResponse;
 import br.com.iagoomes.voll.med.api.medico.MedicoRequestPost;
 import br.com.iagoomes.voll.med.api.medico.MedicoResponse;
 import org.mapstruct.Mapper;
@@ -9,5 +10,5 @@ import org.mapstruct.Mapper;
 public interface MedicoMapper {
     Medico MedicoRequestToMedico(MedicoRequestPost medicoRequestPost);
     MedicoResponse medicoToMedicoResponse(Medico medico);
-
+    MedicoDetalhamentoResponse medicoToMedicoDetalhamentoResponse(Medico medico);
 }
