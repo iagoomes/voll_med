@@ -24,6 +24,7 @@ public class Medico {
     private String email;
     private String telefone;
     private String crm;
+    private Boolean ativo = true;
 
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
@@ -46,7 +47,7 @@ public class Medico {
     }
 
     public void atualizarInformacoes(MedicoRequestPut medicoRequestPut) {
-        if (medicoRequestPut.nome() != null && medicoRequestPut.nome().isBlank()) {
+        if (medicoRequestPut.nome() != null && !medicoRequestPut.nome().isEmpty()) {
             this.nome = medicoRequestPut.nome();
         }
         if (medicoRequestPut.telefone() != null) {
@@ -55,5 +56,9 @@ public class Medico {
         if (medicoRequestPut.endereco() != null) {
             this.endereco.atualizarInformacoes(medicoRequestPut.endereco());
         }
+    }
+
+    public void desativar() {
+        this.ativo = false;
     }
 }
