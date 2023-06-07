@@ -26,6 +26,18 @@ public class Paciente {
     private String cpf;
     private Endereco endereco;
 
+    public void atualizarInformacoes(PacienteRequestPut pacienteRequestPut) {
+        if (pacienteRequestPut.nome() != null && !pacienteRequestPut.nome().isEmpty()) {
+            this.nome = pacienteRequestPut.nome();
+        }
+        if (pacienteRequestPut.telefone() != null && !pacienteRequestPut.telefone().isEmpty()) {
+            this.telefone = pacienteRequestPut.telefone();
+        }
+        if (pacienteRequestPut.endereco() != null) {
+            this.endereco.atualizarInformacoes(pacienteRequestPut.endereco());
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,4 +50,6 @@ public class Paciente {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+
 }

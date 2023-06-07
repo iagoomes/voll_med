@@ -2,10 +2,7 @@ package br.com.iagoomes.voll.med.api.controller;
 
 import br.com.iagoomes.voll.med.api.controller.mapper.PacienteMapper;
 import br.com.iagoomes.voll.med.api.medico.PacienteResponse;
-import br.com.iagoomes.voll.med.api.paciente.Paciente;
-import br.com.iagoomes.voll.med.api.paciente.PacienteDetalhamentoResponse;
-import br.com.iagoomes.voll.med.api.paciente.PacienteRepository;
-import br.com.iagoomes.voll.med.api.paciente.PacienteRequestPost;
+import br.com.iagoomes.voll.med.api.paciente.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,8 +35,17 @@ public class PacienteController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PacienteResponse>> listar(@PageableDefault(size = 10, sort = {"nome"}, direction = Sort.Direction.DESC) Pageable paginacao) {
+    public ResponseEntity<Page<PacienteResponse>> listar(@PageableDefault(sort = {"nome"}, direction = Sort.Direction.DESC) Pageable paginacao) {
         Page<PacienteResponse> pacienteResponsePage = repository.findAll(paginacao).map(mapper::pacienteToPacienteResponse);
         return ResponseEntity.ok(pacienteResponsePage);
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity<PacienteDetalhamentoResponse> atualizar(@RequestBody @Valid PacienteRequestPut pacienteRequestPut) {
+        Paciente paciente = repository.getReferenceById(pacienteRequestPut.id());
+        paciente.atualizarInformacoes(pacienteRequestPut);
+        PacienteDetalhamentoResponse pacienteDetalhamentoResponse = mapper.pacienteToPacienteDetalhamentoResponse(paciente);
+        return ResponseEntity.ok(pacienteDetalhamentoResponse);
     }
 }
