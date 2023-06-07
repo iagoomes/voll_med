@@ -1,6 +1,6 @@
 package br.com.iagoomes.voll.med.api.controller.mapper;
 
-import br.com.iagoomes.voll.med.api.medico.PacienteResponse;
+import br.com.iagoomes.voll.med.api.paciente.PacienteResponse;
 import br.com.iagoomes.voll.med.api.paciente.Paciente;
 import br.com.iagoomes.voll.med.api.paciente.PacienteDetalhamentoResponse;
 import br.com.iagoomes.voll.med.api.paciente.PacienteRequestPost;

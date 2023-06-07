@@ -1,7 +1,7 @@
 package br.com.iagoomes.voll.med.api.controller;
 
 import br.com.iagoomes.voll.med.api.controller.mapper.PacienteMapper;
-import br.com.iagoomes.voll.med.api.medico.PacienteResponse;
+import br.com.iagoomes.voll.med.api.paciente.PacienteResponse;
 import br.com.iagoomes.voll.med.api.paciente.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +36,15 @@ public class PacienteController {
 
     @GetMapping
     public ResponseEntity<Page<PacienteResponse>> listar(@PageableDefault(sort = {"nome"}, direction = Sort.Direction.DESC) Pageable paginacao) {
-        Page<PacienteResponse> pacienteResponsePage = repository.findAll(paginacao).map(mapper::pacienteToPacienteResponse);
+        Page<PacienteResponse> pacienteResponsePage = repository.findAllByAtivoTrue(paginacao).map(mapper::pacienteToPacienteResponse);
         return ResponseEntity.ok(pacienteResponsePage);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PacienteDetalhamentoResponse> detalhar(@PathVariable Long id) {
+        Paciente paciente = repository.getReferenceById(id);
+        PacienteDetalhamentoResponse pacienteDetalhamentoResponse = mapper.pacienteToPacienteDetalhamentoResponse(paciente);
+        return ResponseEntity.ok(pacienteDetalhamentoResponse);
     }
 
     @PutMapping
@@ -47,5 +54,13 @@ public class PacienteController {
         paciente.atualizarInformacoes(pacienteRequestPut);
         PacienteDetalhamentoResponse pacienteDetalhamentoResponse = mapper.pacienteToPacienteDetalhamentoResponse(paciente);
         return ResponseEntity.ok(pacienteDetalhamentoResponse);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity desabilitar(@PathVariable Long id) {
+        Paciente paciente = repository.getReferenceById(id);
+        paciente.desabilitar();
+        return ResponseEntity.noContent().build();
     }
 }

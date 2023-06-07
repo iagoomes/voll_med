@@ -22,7 +22,7 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid MedicoRequestPost medicoRequestPost, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<MedicoDetalhamentoResponse> cadastrar(@RequestBody @Valid MedicoRequestPost medicoRequestPost, UriComponentsBuilder uriBuilder) {
         Medico medico = mapper.MedicoRequestPostToMedico(medicoRequestPost);
         repository.save(medico);
         var uri = uriBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
@@ -46,7 +46,7 @@ public class MedicoController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid MedicoRequestPut medicoRequestPut) {
+    public ResponseEntity<MedicoDetalhamentoResponse> atualizar(@RequestBody @Valid MedicoRequestPut medicoRequestPut) {
         Medico medico = repository.getReferenceById(medicoRequestPut.id());
         medico.atualizarInformacoes(medicoRequestPut);
         MedicoDetalhamentoResponse medicoDetalhamentoResponse = mapper.medicoToMedicoDetalhamentoResponse(medico);

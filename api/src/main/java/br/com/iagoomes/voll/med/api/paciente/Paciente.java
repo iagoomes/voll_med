@@ -25,6 +25,7 @@ public class Paciente {
     private String telefone;
     private String cpf;
     private Endereco endereco;
+    private Boolean ativo = true;
 
     public void atualizarInformacoes(PacienteRequestPut pacienteRequestPut) {
         if (pacienteRequestPut.nome() != null && !pacienteRequestPut.nome().isEmpty()) {
@@ -52,4 +53,7 @@ public class Paciente {
     }
 
 
+    public void desabilitar() {
+        this.ativo = false;
+    }
 }
