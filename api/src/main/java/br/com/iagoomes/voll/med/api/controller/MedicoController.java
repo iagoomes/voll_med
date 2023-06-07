@@ -23,7 +23,7 @@ public class MedicoController {
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid MedicoRequestPost medicoRequestPost, UriComponentsBuilder uriBuilder) {
-        Medico medico = mapper.MedicoRequestToMedico(medicoRequestPost);
+        Medico medico = mapper.MedicoRequestPostToMedico(medicoRequestPost);
         repository.save(medico);
         var uri = uriBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
         MedicoDetalhamentoResponse medicoDetalhamentoResponse = mapper.medicoToMedicoDetalhamentoResponse(medico);
