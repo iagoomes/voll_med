@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface MedicoMapper {
-    Medico MedicoRequestToMedico(MedicoRequestPost medicoRequestPost);
+    Medico MedicoRequestPostToMedico(MedicoRequestPost medicoRequestPost);
     MedicoResponse medicoToMedicoResponse(Medico medico);
     MedicoDetalhamentoResponse medicoToMedicoDetalhamentoResponse(Medico medico);
 }
