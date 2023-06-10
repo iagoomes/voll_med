@@ -1,8 +1,7 @@
 package br.com.iagoomes.voll.med.api.controller;
 
 import br.com.iagoomes.voll.med.api.controller.mapper.PacienteMapper;
-import br.com.iagoomes.voll.med.api.paciente.PacienteResponse;
-import br.com.iagoomes.voll.med.api.paciente.*;
+import br.com.iagoomes.voll.med.api.domain.paciente.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

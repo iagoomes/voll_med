@@ -1,6 +1,6 @@
-package br.com.iagoomes.voll.med.api.paciente;
+package br.com.iagoomes.voll.med.api.domain.paciente;
 
-import br.com.iagoomes.voll.med.api.endereco.EnderecoRequest;
+import br.com.iagoomes.voll.med.api.domain.endereco.EnderecoRequest;
 import jakarta.validation.constraints.NotNull;
 
 public record PacienteRequestPut(

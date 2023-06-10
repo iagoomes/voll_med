@@ -1,6 +1,6 @@
-package br.com.iagoomes.voll.med.api.medico;
+package br.com.iagoomes.voll.med.api.domain.medico;
 
-import br.com.iagoomes.voll.med.api.endereco.Endereco;
+import br.com.iagoomes.voll.med.api.domain.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

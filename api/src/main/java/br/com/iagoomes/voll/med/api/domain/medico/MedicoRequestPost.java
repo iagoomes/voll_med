@@ -1,22 +1,25 @@
-package br.com.iagoomes.voll.med.api.paciente;
+package br.com.iagoomes.voll.med.api.domain.medico;
 
-import br.com.iagoomes.voll.med.api.endereco.EnderecoRequest;
+import br.com.iagoomes.voll.med.api.domain.endereco.EnderecoRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.br.CPF;
+import jakarta.validation.constraints.Pattern;
 
-public record PacienteRequestPost(
+public record MedicoRequestPost(
         @NotBlank
         String nome,
+        @NotBlank
         @Email
         String email,
         @NotBlank
         String telefone,
-        @CPF
-        @NotBlank(message = "CPF deve ser informado!")
-        String cpf,
+        @NotBlank
+        @Pattern(regexp = "\\d{4,6}")
+        String crm,
+        @NotNull
+        Especialidade especialidade,
         @NotNull
         @Valid
         EnderecoRequest endereco) {

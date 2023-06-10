@@ -1,4 +1,4 @@
-package br.com.iagoomes.voll.med.api.medico;
+package br.com.iagoomes.voll.med.api.domain.medico;
 
 public record MedicoResponse(
         Long id,

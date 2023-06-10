@@ -1,4 +1,4 @@
-package br.com.iagoomes.voll.med.api.paciente;
+package br.com.iagoomes.voll.med.api.domain.paciente;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
