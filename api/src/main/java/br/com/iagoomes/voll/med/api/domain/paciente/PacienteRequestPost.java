@@ -11,6 +11,7 @@ public record PacienteRequestPost(
         @NotBlank
         String nome,
         @Email
+        @NotBlank
         String email,
         @NotBlank
         String telefone,
