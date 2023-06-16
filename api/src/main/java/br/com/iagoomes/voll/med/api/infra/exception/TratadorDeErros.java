@@ -1,4 +1,4 @@
-package br.com.iagoomes.voll.med.api.infra;
+package br.com.iagoomes.voll.med.api.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
