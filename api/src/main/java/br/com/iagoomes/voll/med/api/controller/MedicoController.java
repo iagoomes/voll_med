@@ -4,7 +4,6 @@ package br.com.iagoomes.voll.med.api.controller;
 import br.com.iagoomes.voll.med.api.controller.mapper.MedicoMapper;
 import br.com.iagoomes.voll.med.api.domain.medico.*;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +14,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("medicos")
 public class MedicoController {
-    @Autowired
-    private MedicoRepository repository;
-    @Autowired
-    private MedicoMapper mapper;
+    private final MedicoRepository repository;
+    private final MedicoMapper mapper;
+
+    public MedicoController(MedicoRepository repository, MedicoMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
 
     @PostMapping
     @Transactional

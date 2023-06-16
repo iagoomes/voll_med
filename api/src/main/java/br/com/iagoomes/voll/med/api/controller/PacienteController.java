@@ -3,7 +3,6 @@ package br.com.iagoomes.voll.med.api.controller;
 import br.com.iagoomes.voll.med.api.controller.mapper.PacienteMapper;
 import br.com.iagoomes.voll.med.api.domain.paciente.*;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,10 +17,15 @@ import java.net.URI;
 @RestController
 @RequestMapping("pacientes")
 public class PacienteController {
-    @Autowired
+    final
     PacienteRepository repository;
-    @Autowired
+    final
     PacienteMapper mapper;
+
+    public PacienteController(PacienteRepository repository, PacienteMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
 
     @PostMapping
     @Transactional

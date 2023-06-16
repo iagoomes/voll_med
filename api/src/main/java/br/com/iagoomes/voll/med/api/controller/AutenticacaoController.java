@@ -2,7 +2,6 @@ package br.com.iagoomes.voll.med.api.controller;
 
 import br.com.iagoomes.voll.med.api.domain.usuario.AutenticacaoRequest;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/login")
 public class AutenticacaoController {
-    @Autowired
-    private AuthenticationManager manager;
+    private final AuthenticationManager manager;
+
+    public AutenticacaoController(AuthenticationManager manager) {
+        this.manager = manager;
+    }
 
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid AutenticacaoRequest autenticacaoRequest) {
