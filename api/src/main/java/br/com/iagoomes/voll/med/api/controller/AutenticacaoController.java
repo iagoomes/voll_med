@@ -22,7 +22,7 @@ public class AutenticacaoController {
     private final TokenService tokenService;
     private final TokenMapper mapper;
 
-    public AutenticacaoController(AuthenticationManager manager, TokenService tokenService,TokenMapper mapper) {
+    public AutenticacaoController(AuthenticationManager manager, TokenService tokenService, TokenMapper mapper) {
         this.manager = manager;
         this.tokenService = tokenService;
         this.mapper = mapper;
