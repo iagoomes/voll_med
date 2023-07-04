@@ -9,7 +9,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,12 +29,17 @@ public class AutenticacaoController {
 
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid AutenticacaoRequest autenticacaoRequest) {
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(autenticacaoRequest.login(), autenticacaoRequest.senha());
-        Authentication authenticate = manager.authenticate(authenticationToken);
-        String tokenJWT = tokenService.gerartoken((Usuario) authenticate.getPrincipal());
+        try {
+            var authenticationToken = new UsernamePasswordAuthenticationToken(autenticacaoRequest.login(), autenticacaoRequest.senha());
+            var authentication = manager.authenticate(authenticationToken);
 
-        TokenJwtResponse tokenJwtResponse = mapper.StringTokenToTokenJwtResponse(tokenJWT);
-        return ResponseEntity.ok(tokenJwtResponse);
+            var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
+
+            TokenJwtResponse tokenJwtResponse = mapper.StringTokenToTokenJwtResponse(tokenJWT);
+            return ResponseEntity.ok(tokenJwtResponse);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
