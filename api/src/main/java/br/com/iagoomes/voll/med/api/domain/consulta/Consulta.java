@@ -4,13 +4,17 @@ import br.com.iagoomes.voll.med.api.domain.medico.Medico;
 import br.com.iagoomes.voll.med.api.domain.paciente.Paciente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 @Table(name = "consultas")
 @Entity(name = "Consulta")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
