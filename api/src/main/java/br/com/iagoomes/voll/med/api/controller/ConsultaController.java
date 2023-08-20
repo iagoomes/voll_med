@@ -1,5 +1,6 @@
 package br.com.iagoomes.voll.med.api.controller;
 
+import br.com.iagoomes.voll.med.api.domain.consulta.AgendaDeConsultas;
 import br.com.iagoomes.voll.med.api.domain.consulta.DadosAgendamentoConsulta;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -12,10 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("consultas")
 public class ConsultaController {
+    private final AgendaDeConsultas agenda;
+
+    public ConsultaController(AgendaDeConsultas agenda) {
+        this.agenda = agenda;
+    }
+
     @PostMapping
     @Transactional
     public ResponseEntity agendar(@RequestBody @Valid DadosAgendamentoConsulta dados){
-        System.out.println(dados);
+        agenda.agendar(dados);
         return ResponseEntity.ok(new DadosAgendamentoConsulta(null, null, null));
     }
 }
