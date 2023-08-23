@@ -13,7 +13,7 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
     Page<Medico> findAllByAtivoTrue(Pageable paginacao);
 
     @Query("""
-            SELECT m 
+            SELECT m
             FROM Medico m
             WHERE m.ativo = true
             AND   m.especialidade = :especialidade

@@ -3,9 +3,15 @@ package br.com.iagoomes.voll.med.api.domain.consulta.validacoes;
 import br.com.iagoomes.voll.med.api.domain.consulta.ConsultaRepository;
 import br.com.iagoomes.voll.med.api.domain.consulta.DadosAgendamentoConsulta;
 import br.com.iagoomes.voll.med.api.infra.exception.ValidacaoException;
+import org.springframework.stereotype.Component;
 
-public class ValidadorPacienteSemOutraConsultaNoDia {
-    private ConsultaRepository consultaRepository;
+@Component
+public class ValidadorPacienteSemOutraConsultaNoDia implements ValidadorAgendamentoDeConsulta{
+    private final ConsultaRepository consultaRepository;
+
+    public ValidadorPacienteSemOutraConsultaNoDia(ConsultaRepository consultaRepository) {
+        this.consultaRepository = consultaRepository;
+    }
 
     public void validar(DadosAgendamentoConsulta dados) {
         var primeiroHorario = dados.data().withHour(7);

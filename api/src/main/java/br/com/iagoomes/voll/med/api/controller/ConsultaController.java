@@ -2,6 +2,7 @@ package br.com.iagoomes.voll.med.api.controller;
 
 import br.com.iagoomes.voll.med.api.domain.consulta.AgendaDeConsultas;
 import br.com.iagoomes.voll.med.api.domain.consulta.DadosAgendamentoConsulta;
+import br.com.iagoomes.voll.med.api.domain.consulta.DadosDetalhamentoConsulta;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class ConsultaController {
     @PostMapping
     @Transactional
     public ResponseEntity agendar(@RequestBody @Valid DadosAgendamentoConsulta dados){
-        agenda.agendar(dados);
-        return ResponseEntity.ok(new DadosAgendamentoConsulta(null, null, null));
+        DadosDetalhamentoConsulta detalhamentoConsulta = agenda.agendar(dados);
+        return ResponseEntity.ok(detalhamentoConsulta);
     }
 }

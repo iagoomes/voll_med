@@ -2,11 +2,12 @@ package br.com.iagoomes.voll.med.api.domain.consulta.validacoes;
 
 import br.com.iagoomes.voll.med.api.domain.consulta.DadosAgendamentoConsulta;
 import br.com.iagoomes.voll.med.api.infra.exception.ValidacaoException;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-
-public class ValidadorHorarioAntecedencia {
+@Component
+public class ValidadorHorarioAntecedencia implements ValidadorAgendamentoDeConsulta{
 
     public void validar(DadosAgendamentoConsulta dados) {
         var dataConsulta = dados.data();
