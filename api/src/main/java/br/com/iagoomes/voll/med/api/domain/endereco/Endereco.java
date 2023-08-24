@@ -20,6 +20,16 @@ public class Endereco {
     private String uf;
     private String cep;
 
+    public Endereco(EnderecoRequest enderecoRequest) { //utilizar somente em testes caso contrario utilizar o mapper
+        this.logradouro = enderecoRequest.logradouro();
+        this.numero = enderecoRequest.numero();
+        this.complemento = enderecoRequest.complemento();
+        this.bairro = enderecoRequest.bairro();
+        this.cidade = enderecoRequest.cidade();
+        this.uf = enderecoRequest.uf();
+        this.cep = enderecoRequest.cep();
+    }
+
     public void atualizarInformacoes(EnderecoRequest endereco) {
         if (endereco.logradouro() != null) {
             this.logradouro = endereco.logradouro();

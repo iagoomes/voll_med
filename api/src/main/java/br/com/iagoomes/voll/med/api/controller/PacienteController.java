@@ -2,6 +2,7 @@ package br.com.iagoomes.voll.med.api.controller;
 
 import br.com.iagoomes.voll.med.api.controller.mapper.PacienteMapper;
 import br.com.iagoomes.voll.med.api.domain.paciente.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,11 +17,10 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("pacientes")
+@SecurityRequirement(name = "bearer-key")
 public class PacienteController {
-    final
-    PacienteRepository repository;
-    final
-    PacienteMapper mapper;
+    private final PacienteRepository repository;
+    private final PacienteMapper mapper;
 
     public PacienteController(PacienteRepository repository, PacienteMapper mapper) {
         this.repository = repository;

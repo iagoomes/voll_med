@@ -3,6 +3,7 @@ package br.com.iagoomes.voll.med.api.controller;
 
 import br.com.iagoomes.voll.med.api.controller.mapper.MedicoMapper;
 import br.com.iagoomes.voll.med.api.domain.medico.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("medicos")
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
     private final MedicoRepository repository;
     private final MedicoMapper mapper;

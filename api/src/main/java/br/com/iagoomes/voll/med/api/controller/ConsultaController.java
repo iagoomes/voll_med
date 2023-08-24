@@ -3,6 +3,7 @@ package br.com.iagoomes.voll.med.api.controller;
 import br.com.iagoomes.voll.med.api.domain.consulta.AgendaDeConsultas;
 import br.com.iagoomes.voll.med.api.domain.consulta.DadosAgendamentoConsulta;
 import br.com.iagoomes.voll.med.api.domain.consulta.DadosDetalhamentoConsulta;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("consultas")
+@SecurityRequirement(name = "bearer-key")
 public class ConsultaController {
     private final AgendaDeConsultas agenda;
 

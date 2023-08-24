@@ -32,6 +32,14 @@ public class Medico {
     @Embedded
     private Endereco endereco;
 
+    public Medico(MedicoRequestPost medicoRequestPost) { //utilizar somente em testes caso contrario utilizar o mapper
+        this.nome = medicoRequestPost.nome();
+        this.email = medicoRequestPost.email();
+        this.telefone = medicoRequestPost.telefone();
+        this.crm = medicoRequestPost.crm();
+        this.especialidade = medicoRequestPost.especialidade();
+        this.endereco = new Endereco(medicoRequestPost.endereco());
+    }
 
     @Override
     public boolean equals(Object o) {

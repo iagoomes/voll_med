@@ -27,6 +27,14 @@ public class Paciente {
     private Endereco endereco;
     private Boolean ativo = true;
 
+    public Paciente(PacienteRequestPost pacienteRequestPost) { //utilizar somente em testes caso contrario utilizar o mapper
+        this.nome = pacienteRequestPost.nome();
+        this.email = pacienteRequestPost.email();
+        this.telefone = pacienteRequestPost.telefone();
+        this.cpf = pacienteRequestPost.cpf();
+        this.endereco = new Endereco(pacienteRequestPost.endereco());
+    }
+
     public void atualizarInformacoes(PacienteRequestPut pacienteRequestPut) {
         if (pacienteRequestPut.nome() != null && !pacienteRequestPut.nome().isEmpty()) {
             this.nome = pacienteRequestPut.nome();
